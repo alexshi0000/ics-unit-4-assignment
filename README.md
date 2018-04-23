@@ -87,6 +87,31 @@ public static class LinkedList {
 ```
 We create a LinkedList called idArray to keep track of the identifications of the nodes we are allowed to delete. In this case, it’s every node after the first 50. The String variable data is the identification we’re storing. The method remove takes in an index n and returns the identification that was just removed. This way we have a way to store and retrieve random identifications given to TNodes easily without using the tree.
 
+#### Testing our Identification LinkedList
+```
+idArray.insert("123");
+idArray.insert("3");
+idArray.insert("43");
+idArray.insert("12");
+
+System.out.println("original");
+System.out.println(idArray);
+
+System.out.println("removed: " + idArray.remove(2) + " size: " + idArray.size);
+System.out.println(idArray);
+
+System.out.println("removed: " + idArray.remove(0) + " size: " + idArray.size);
+System.out.println(idArray);
+
+System.out.println("removed: " + idArray.remove(1) + " size: " + idArray.size);
+System.out.println(idArray);
+
+idArray.insert("55");
+System.out.println("added: 55");
+System.out.println(idArray);
+```
+Here is some code I wrote to test the linkedlist(idArray). We decided to implement the program this way because it means easy in and out operations for the continuous deletion and insertion of TNodes in globalTree. Another advantage is that we have more flexibility when it comes to the insertion/deletion thresholds and well as the STARTING_NODES size. 
+
 #### Personal Constraint:
 ```java
 public static int idx = 0;
