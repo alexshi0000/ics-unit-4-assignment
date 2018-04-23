@@ -34,10 +34,12 @@ public static class LNode {
 public static class LinkedList {
         LNode head;
         int size;
+        
         public LinkedList() {
                 head = null;
                 size = 0;
         }
+        
         public void insert(String data) {
                 size++;
                 if (head == null) {
@@ -50,6 +52,7 @@ public static class LinkedList {
                         focus.next = new LNode(data);
                 }
         }
+        
         public String remove(int n) {
                 size--;
                 String ret;
@@ -70,6 +73,7 @@ public static class LinkedList {
                         return ret;
                 }
         }
+        
         public String toString() {
                 String ret = "";
                 LNode focus = head;
@@ -97,6 +101,7 @@ public static boolean startingNodesChecker() {
         }
         return true;
 }
+
 public static void startingNodesCheckerUtil(TNode focus, String[] arr) {
         if (focus != null) {
                 startingNodesCheckerUtil(focus.getLeft(), arr);
@@ -163,12 +168,12 @@ This while loop takes care of the random additions/deletions until the requireme
 #### Deletion of Extra TNodes Until STARTING_NODES:
 ```java
 while (totalNodesInTree > STARTING_NODES) { 
-int randIdx = (int)(Math.random() * idArray.size);
-            String randIdentification = idArray.remove(randIdx); 
-            globalTree.deleteNode(globalTree.findNode(randIdentification));
-            nodeDeletionCounter++;
-            totalNodesInTree--;
-            System.out.println("total nodes: " + totalNodesInTree);
+        int randIdx = (int)(Math.random() * idArray.size);
+        String randIdentification = idArray.remove(randIdx); 
+        globalTree.deleteNode(globalTree.findNode(randIdentification));
+        nodeDeletionCounter++;
+        totalNodesInTree--;
+        System.out.println("total nodes: " + totalNodesInTree);
 }
 ```
 This segment deletes all the nodes that are not the starting nodes. The while loop will exit once there are 50 nodes left in the tree. The nodes are randomly deleted, using the linked list to ensure none of the original 50 are deleted. The process is the exact same as the previous segment of deleting code.
