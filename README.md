@@ -199,7 +199,7 @@ if (startingNodesPresent) {
 ```
 This last for loop checks that the identifications of all the nodes in the tree match the identifications in the array. If this is not the case, the boolean startingNodesPresent will become false and the loop will exit. If startingNodesPresent is still true, we print out the total amount of nodes inserted/deleted to ensure that they are in the tens of thousands and that there is exactly 50 difference between nodes inserted and deleted. We then call the startingNodesChecker method to ensure all the nodes are sorted, as this is our final constraint.
 
-#### In-Depth Look at  startingNodesChecker Function:
+#### In-Depth Look at  startingNodesChecker() &nbsp Function:
 ```
 public static int idx = 0;
 //use this to check the starting nodes are sorted correctly within the tree
