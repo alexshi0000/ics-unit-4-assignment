@@ -3,7 +3,7 @@ By Alex Shi and Mahir Rahman. The .java class that we created for this assignmen
 
 ## Here is our Writeup/Documentation for the Binary Tree Test
 #### Constants:
-```
+```java
 public static final int LOWER_BOUND    = -1000000,
                         UPPER_BOUND    =  1000000,
                         STARTING_NODES = 50,
