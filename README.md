@@ -108,7 +108,7 @@ public static void startingNodesCheckerUtil(TNode focus, String[] arr) {
 ```
 The constraint we added is that the final 50 nodes must also be in order after the additions and deletions. This is due to the nature of the findNode method. If any of the 50 nodes are not in order then we know something went wrong, These methods are to check that the starting nodes are sorted correctly. This way we are checking not just if those 50 nodes exist, but also checking that they are correct.
 
-#### Addition of First 50 Nodes:
+#### Insertion of the First 50 Nodes:
 ```
 String[] firstStartingId = new String[STARTING_NODES];
 
@@ -198,3 +198,29 @@ if (startingNodesPresent) {
 }
 ```
 This last for loop checks that the identifications of all the nodes in the tree match the identifications in the array. If this is not the case, the boolean startingNodesPresent will become false and the loop will exit. If startingNodesPresent is still true, we print out the total amount of nodes inserted/deleted to ensure that they are in the tens of thousands and that there is exactly 50 difference between nodes inserted and deleted. We then call the startingNodesChecker method to ensure all the nodes are sorted, as this is our final constraint.
+
+#### startingNodesChecker() Method in Depth Look:
+```
+public static int idx = 0;
+//use this to check the starting nodes are sorted correctly within the tree
+public static boolean startingNodesChecker() {
+        String[] order = new String[STARTING_NODES];
+        startingNodesCheckerUtil(globalTree.getRoot(), order);
+        System.out.println(Arrays.toString(order));
+        for (int i = 1; i < STARTING_NODES; i++) {
+                if (order[i].compareTo(order[i-1]) < 0)
+                        return false;
+        }
+        return true;
+}
+
+public static void startingNodesCheckerUtil(TNode focus, String[] arr) {
+        if (focus != null) {
+                startingNodesCheckerUtil(focus.getLeft(), arr);
+                arr[idx] = focus.getIdentification();
+                idx++;
+                startingNodesCheckerUtil(focus.getRight(), arr);
+        }
+}
+```
+The integer idx is used as a pointer to the next available spot in the array order. The order array stores String variables that are the identifications of the TNodes of the STARTING_NODES. The array is filled using an in order traversal as seen in the below method startingNodesCheckerUtil(). Ultimately, we can then check if the filled array of TNode identifications is sorted, confirming that the STARTING_NODES are in their proper positions.
