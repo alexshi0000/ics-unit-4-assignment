@@ -178,32 +178,6 @@ while (totalNodesInTree > STARTING_NODES) {
 ```
 This segment deletes all the nodes that are not the starting nodes. The while loop will exit once there are 50 nodes left in the tree. The nodes are randomly deleted, using the linked list to ensure none of the original 50 are deleted. The process is the exact same as the previous segment of deleting code.
 
-#### Final Checks:
-```java
-boolean startingNodesPresent = true;
-
-for (int i = 0; i < STARTING_NODES && startingNodesPresent; i++) {
-        if (globalTree.findNode(firstStartingId[i]) == null)
-                startingNodesPresent = false;
-}
-
-if (startingNodesPresent) {
-        System.out.println("TEST COMPLETE, ALL STARTING NODES ARE PRESENT");
-        System.out.println("Total amount of nodes inserted in test: " + nodeInsertionCounter);
-        System.out.println("Total amount of nodes deleted in test:  " + nodeDeletionCounter);
-        System.out.println("The difference should be exactly the amount of starting nodes");
-        //globalTree.printTree(0); //our criteria is if the in order traversal is sorted, then the test was successful
-        if(startingNodesChecker()) //this method checks if the remaining nodes in the tree are sorted
-                System.out.println("STARTING NODES ARE PROPERLY SORTED IN TREE");
-        else
-                System.out.println("OOPS SOMETHING WENT WRONG");
-        
-} else {
-        System.out.println("OOPS SOMETHING WENT WRONG");
-}
-```
-This last for loop checks that the identifications of all the nodes in the tree match the identifications in the array. If this is not the case, the boolean startingNodesPresent will become false and the loop will exit. If startingNodesPresent is still true, we print out the total amount of nodes inserted/deleted to ensure that they are in the tens of thousands and that there is exactly 50 difference between nodes inserted and deleted. We then call the startingNodesChecker method to ensure all the nodes are sorted, as this is our final constraint.
-
 #### In-Depth Look at startingNodesChecker() &nbsp; Function:
 ```java
 public static int idx = 0;
@@ -229,3 +203,29 @@ public static void startingNodesCheckerUtil(TNode focus, String[] arr) {
 }
 ```
 The integer idx is used as a pointer to the next available spot in the array order. The order array stores String variables that are the identifications of the TNodes of the STARTING_NODES. The array is filled using an in order traversal as seen in the below method startingNodesCheckerUtil(). Ultimately, we can then check if the filled array of TNode identifications is sorted, confirming that the STARTING_NODES are in their proper positions.
+
+#### Final Checks:
+```java
+boolean startingNodesPresent = true;
+
+for (int i = 0; i < STARTING_NODES && startingNodesPresent; i++) {
+        if (globalTree.findNode(firstStartingId[i]) == null)
+                startingNodesPresent = false;
+}
+
+if (startingNodesPresent) {
+        System.out.println("TEST COMPLETE, ALL STARTING NODES ARE PRESENT");
+        System.out.println("Total amount of nodes inserted in test: " + nodeInsertionCounter);
+        System.out.println("Total amount of nodes deleted in test:  " + nodeDeletionCounter);
+        System.out.println("The difference should be exactly the amount of starting nodes");
+        //globalTree.printTree(0); //our criteria is if the in order traversal is sorted, then the test was successful
+        if(startingNodesChecker()) //this method checks if the remaining nodes in the tree are sorted
+                System.out.println("STARTING NODES ARE PROPERLY SORTED IN TREE");
+        else
+                System.out.println("OOPS SOMETHING WENT WRONG");
+        
+} else {
+        System.out.println("OOPS SOMETHING WENT WRONG");
+}
+```
+This last for loop checks that the identifications of all the nodes in the tree match the identifications in the array. If this is not the case, the boolean startingNodesPresent will become false and the loop will exit. If startingNodesPresent is still true, we print out the total amount of nodes inserted/deleted to ensure that they are in the tens of thousands and that there is exactly 50 difference between nodes inserted and deleted. We then call the startingNodesChecker method to ensure all the nodes are sorted, as this is our final constraint.
