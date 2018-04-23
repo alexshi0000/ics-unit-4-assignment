@@ -88,7 +88,7 @@ public static class LinkedList {
 We create a LinkedList called idArray to keep track of the identifications of the nodes we are allowed to delete. In this case, it’s every node after the first 50. The String variable data is the identification we’re storing. The method remove takes in an index n and returns the identification that was just removed. This way we have a way to store and retrieve random identifications given to TNodes easily without using the tree.
 
 #### Testing our Identification LinkedList
-```
+```java
 idArray.insert("123");
 idArray.insert("3");
 idArray.insert("43");
