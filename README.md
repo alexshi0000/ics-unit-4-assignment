@@ -143,9 +143,11 @@ The constraint we added is that the final 50 nodes must also be in order after t
 String[] firstStartingId = new String[STARTING_NODES];
 
 for (int i = 0; i < STARTING_NODES; i++) {
-        int numberEntry = (int)(Math.random() * (UPPER_BOUND - LOWER_BOUND) + LOWER_BOUND);
+        int numberEntry = (int)(Math.random() * 
+                          (UPPER_BOUND - LOWER_BOUND) + LOWER_BOUND);
         while (globalTree.findNode(Integer.toString(numberEntry)) != null)
-                numberEntry = (int)(Math.random() * (UPPER_BOUND - LOWER_BOUND) + LOWER_BOUND);
+                numberEntry = (int)(Math.random() * 
+                              (UPPER_BOUND - LOWER_BOUND) + LOWER_BOUND);
         TNode entry = new TNode(Integer.toString(numberEntry), 0, null, null, null);
         globalTree.insertNode(entry);
         firstStartingId[i] = entry.getIdentification();
@@ -159,19 +161,24 @@ This is the first segment in the main method, and is where we add the first 50 n
 ```java
 long startTime = System.currentTimeMillis(); //get the starting time before starting inserting and deleting
 
-while (totalNodesInTree < INSERT_TH || nodeDeletionCounter < DELETE_TH || System.currentTimeMillis() - startTime < 15000) {
+while (totalNodesInTree < INSERT_TH || nodeDeletionCounter < DELETE_TH || 
+                        System.currentTimeMillis() - startTime < 15000) {
         /*
-         * the conditions for this while loop is that this loop must run for at least 15 seconds and reach insertion/deletion
+         * the conditions for this while loop is that this loop must run for at 
+         least 15 seconds and reach insertion/deletion
          * thresholds set in te constants part of the code.
          */
         int insertAmount = (int)(Math.random() * INSERT_LIMIT);
         int deleteAmount = (int)(Math.random() * DELETE_LIMIT);
         //doing insertion right here
         for (int i = 0; i < insertAmount; i++) {
-                int numberEntry  = (int)(Math.random() * (UPPER_BOUND - LOWER_BOUND) + LOWER_BOUND);
+                int numberEntry  = (int)(Math.random() * 
+                                   (UPPER_BOUND - LOWER_BOUND) + LOWER_BOUND);
                 while (globalTree.findNode(Integer.toString(numberEntry)) != null)
-                        numberEntry = (int)(Math.random() * (UPPER_BOUND - LOWER_BOUND) + LOWER_BOUND);
-                globalTree.insertNode(new TNode(Integer.toString(numberEntry), 0, null, null, null));
+                        numberEntry = (int)(Math.random() * 
+                                      (UPPER_BOUND - LOWER_BOUND) + LOWER_BOUND);
+                TNode entry = new TNode(Integer.toString(numberEntry), 0, null, null, null);
+                globalTree.insertNode(entry);
                 idArray.insert(Integer.toString(numberEntry));
                 nodeInsertionCounter++;
                 totalNodesInTree++;
@@ -179,7 +186,8 @@ while (totalNodesInTree < INSERT_TH || nodeDeletionCounter < DELETE_TH || System
         //doing deletion right here
         for (int i = 0; i < Math.min(idArray.size, deleteAmount); i++) {
                 int randIdx = (int)(Math.random() * idArray.size);
-                String randIdentification = idArray.remove(randIdx);  // get the identification to remove from the linked list
+                String randIdentification = idArray.remove(randIdx);  
+                // get the identification to remove from the linked list
                 globalTree.deleteNode(globalTree.findNode(randIdentification));
                 nodeDeletionCounter++;
                 totalNodesInTree--;
@@ -243,7 +251,8 @@ if (startingNodesPresent) {
         System.out.println("Total amount of nodes inserted in test: " + nodeInsertionCounter);
         System.out.println("Total amount of nodes deleted in test:  " + nodeDeletionCounter);
         System.out.println("The difference should be exactly the amount of starting nodes");
-        //globalTree.printTree(0); //our criteria is if the in order traversal is sorted, then the test was successful
+        //globalTree.printTree(0); 
+        //our criteria is if the in order traversal is sorted, then the test was successful
         if(startingNodesChecker()) //this method checks if the remaining nodes in the tree are sorted
                 System.out.println("STARTING NODES ARE PROPERLY SORTED IN TREE");
         else
